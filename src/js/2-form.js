@@ -7,12 +7,12 @@ form.addEventListener('input', onFormInput);
 form.addEventListener('submit', onFormSubmit);
 
 function onFormInput() {
-  const emailValue = form.elements.email.value.trim();
-  const messageValue = form.elements.message.value.trim();
+  const email = form.elements.email.value.trim();
+  const message = form.elements.message.value.trim();
 
   const myData = {
-    emailValue,
-    messageValue,
+    email,
+    message,
   };
   saveToLS(STORAGE_KEY, myData);
 }
@@ -24,17 +24,13 @@ function saveToLS(key, value) {
 
 function loadFromLS(key) {
   const jsonData = localStorage.getItem(key);
-  try {
-    return JSON.parse(jsonData);
-  } catch {
-    return jsonData;
-  }
+  return JSON.parse(jsonData);
 }
 
 function init() {
   const myData = loadFromLS(STORAGE_KEY) || {};
-  form.elements.email.value = myData.emailValue || '';
-  form.elements.message.value = myData.messageValue || '';
+  form.elements.email.value = myData.email || '';
+  form.elements.message.value = myData.message || '';
 }
 
 init();
@@ -42,15 +38,15 @@ init();
 function onFormSubmit(e) {
   e.preventDefault();
 
-  const emailValue = form.elements.email.value.trim();
-  const messageValue = form.elements.message.value.trim();
+  const email = form.elements.email.value.trim();
+  const message = form.elements.message.value.trim();
   const myData = {
-    emailValue,
-    messageValue,
+    email,
+    message,
   };
 
-  if (emailValue === '' || messageValue === '') {
-    return;
+  if (email === '' || message === '') {
+    alert('All form fields must be filled in');
   } else {
     console.log(myData);
     localStorage.removeItem(STORAGE_KEY);

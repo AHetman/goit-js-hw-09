@@ -64,6 +64,9 @@ const images = [
   },
 ];
 
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 const ulGallery = document.querySelector('.gallery');
 
 const galleryLiElems = images
@@ -81,9 +84,6 @@ const galleryLiElems = images
   .join('');
 
 ulGallery.innerHTML = galleryLiElems;
-
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const myOptions = {
   captionsData: 'alt',
